@@ -93,12 +93,12 @@ public class ExamenParcial {
 					
 					 for(int j=1;j<=VU;j++) {
 					    VL=CA-DA;
-					    DPA=0;
-						DPA=DPA+DA;
-System.out.println(j+". Depreciacion Anual="+DA+" | Valor en libros="+VL);
+					    int NVU=VU-j;
+
+             System.out.println(j+". Depreciacion Anual="+DA+" | Valor en libros="+VL);
+                        DA=(((VL-VD)*VU)/suma);
 						VL=VL-DA;
 					 }
-		    System.out.println("Factorial of "+VU+" is: "+suma);
 		    
 		    
 		    
