@@ -105,7 +105,6 @@ public class ExamenParcial {
 		    
 			break;
 		}
-		System.out.println("Hola");
 
 	}
 }
