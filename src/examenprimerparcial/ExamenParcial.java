@@ -73,6 +73,7 @@ public class ExamenParcial {
 		case 3:
 			break;
 		case 4:
+			int NVU;
 			do{System.out.println("Por favor, Digite el valor del activo");
 			CA=lec.nextInt();}while(CA<1000 || CA>1000000);
 			do{System.out.println("Digite el valor de desecho/residual");
@@ -90,13 +91,12 @@ public class ExamenParcial {
 							+ "\nValor de Desecho/Residual: C$"+VD+""
 							+ "\nVida Util: C$"+VU+""
 							+ "\nDepresiacion Anual: C$"+DA);
-					
+					NVU=VU;
 					 for(int j=1;j<=VU;j++) {
 					    VL=CA-DA;
-					    int NVU=VU-j;
-
+					    DA=(((VL-VD)*NVU)/suma);
              System.out.println(j+". Depreciacion Anual="+DA+" | Valor en libros="+VL);
-                        DA=(((VL-VD)*VU)/suma);
+                        NVU=VU-1;
 						VL=VL-DA;
 					 }
 		    
