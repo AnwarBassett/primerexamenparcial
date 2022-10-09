@@ -36,8 +36,7 @@ public class ExamenParcial {
 			}else {
 				DA=((CA-VD)/VU);
 			}
-			VL=CA-DA;
-			DPA=0;
+			VL=CA-DA;DPA=0;
 			System.out.println("Costo del activo: C$"+CA
 					+ "\nValor de Desecho/Residual: C$"+VD+""
 					+ "\nVida Util: C$"+VU
@@ -69,7 +68,6 @@ public class ExamenParcial {
 					}else {
 						DA=(CA-VD)/suma;
 					}
-				  
 				  System.out.println("+=================================================+");
 					System.out.println("|Costo del activo:                      C$"+CA+"|"
 							+ "\n|Valor de Desecho/Residual:             C$"+VD+"  |"
@@ -77,8 +75,7 @@ public class ExamenParcial {
 							+ "\n|Vida util en unidades:                 C$"+suma+"  |"
 							+ "\n|Depreciacion por unidad de produccion: C$"+DA+" |");
 					System.out.println("+=================================================+");
-					  VL=CA;
-					  DPA=0;
+					  VL=CA;DPA=0;
 					      System.out.println("Depreciacion Anual | Depreciacion Acumulada | Valor en libros ");
 					      System.out.println("--------------------------------------------------------------");
 					  for(int i=0;i<VU;i++) {
@@ -91,14 +88,15 @@ public class ExamenParcial {
 		case 3:
 			  double []datoss = new double[7];
 			  int sumas=0;
-			double VUA, DTD, TD;
+			double VUA, DTD;
 			VUA=1.0/VU;
 			DTD=VUA*2;
-			TD=1-(Math.pow((VD/CA), VUA));
-			System.out.println(TD);
-			DA=((CA-VD)/VU);
-			VL=CA;
-			DPA=0;
+			if(VD==0) {
+				DA=(CA/VU);
+			}else {
+				DA=(CA-VD)/VU;
+			}
+			VL=CA;DPA=0;
 			System.out.println("Costo del activo: C$"+CA
 					+ "\nValor de Desecho/Residual: C$"+VD
 					+ "\nVida Util: C$"+VU
@@ -120,25 +118,24 @@ public class ExamenParcial {
 	for (int i=VU;i>0;i--){
 	    sumatoria=sumatoria+i;
 	}
+	if(VD==0) {
+		IM=(CA);
+	}else {
 		IM=CA-VD;
-			 
+	}
 		fraccion=(Math.round((VU/sumatoria) * 10000d) / 10000d);
-		System.out.println(fraccion);
-		DA=(CA-VD)*fraccion;
 		System.out.println("Costo del activo: C$"+CA
 					+ "\nValor de Desecho/Residual: C$"+VD+""
 					+ "\nVida Util: C$"+VU);
-		NVU=VU;
-		VL=CA;
-		DPA=0;
+		NVU=VU;VL=CA;DPA=0;
+		System.out.println("Fraccion | Importe depreciable | Depr. Anual | Depr. Acumulada | Valor Libros");
 	for(int j=1;j<=VU;j++) {
 		fraccion=(Math.round((NVU/sumatoria) * 10000d) / 10000d);
 		NVU=NVU-1;
 		DA=Math.round(IM*fraccion);
 		DPA=DPA+DA;
 		VL=VL-DA;
-		System.out.println("Fraccion | Sumatoria | Importe depreciable");
-		System.out.println((NVU+1)+"/"+sumatoria+"|"+IM+"|"+DA+"|"+DPA+"|"+VL); 
+		System.out.println((NVU+1)+"/"+sumatoria+" |"+IM+"             |"+DA+"      |"+DPA+"          |"+VL); 
 	}
 			break;
 		}
