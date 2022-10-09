@@ -104,38 +104,38 @@ public class ExamenParcial {
 			
 			break;
 		case 4:
-			int NVU;
-			do{System.out.println("Por favor, Digite el valor del activo");
-			CA=lec.nextInt();}while(CA<1000 || CA>1000000);
-			do{System.out.println("Digite el valor de desecho/residual");
-			VD=lec.nextInt();}while(VD<1000 || VD>1000000);
-			do{System.out.println("Digite la vida util del activo");
-			VU=lec.nextInt();}while(VU<1 || VU>20);
-		    int i,suma,fraccion;  
-		    suma=0;
-				  for(i=0;i<=VU;i++){    
-				      suma=suma+i;    
-				  }    
-
-				    DA=(((CA-VD)*VU)/suma);
-					System.out.println("Costo del activo: C$"+CA
-							+ "\nValor de Desecho/Residual: C$"+VD+""
-							+ "\nVida Util: C$"+VU+""
-							+ "\nDepresiacion Anual: C$"+DA);
-					NVU=VU;
-					 for(int j=1;j<=VU;j++) {
-					    VL=CA-DA;
-					    DA=(((VL-VD)*NVU)/suma);
-             System.out.println(j+". Depreciacion Anual="+DA+" | Valor en libros="+VL);
-                        NVU=VU-1;
-						VL=VL-DA;
-					 }
-		    
-		    
-		    
-		    
+			double NVU, IM, sumatoria, fraccion;
+			 sumatoria=0;
+	for (int i=VU;i>0;i--){
+	    sumatoria=sumatoria+i;
+	}
+		IM=CA-VD;
+			 
+		fraccion=(Math.round((VU/sumatoria) * 10000d) / 10000d);
+		System.out.println(fraccion);
+		DA=(CA-VD)*fraccion;
+		System.out.println("Costo del activo: C$"+CA
+					+ "\nValor de Desecho/Residual: C$"+VD+""
+					+ "\nVida Util: C$"+VU);
+		NVU=VU;
+		VL=CA;
+		DPA=0;
+	for(int j=1;j<=VU;j++) {
+		fraccion=(Math.round((NVU/sumatoria) * 10000d) / 10000d);
+		NVU=NVU-1;
+		DA=Math.round(IM*fraccion);
+		DPA=DPA+DA;
+		VL=VL-DA;
+		System.out.println("Fraccion | Sumatoria | Importe depreciable");
+		System.out.println((NVU+1)+"/"+sumatoria+"|"+IM+"|"+DA+"|"+DPA+"|"+VL); 
+	}
 			break;
 		}
+		System.out.println("\n"
+				+ "Desea usar otro metodo y/o ingresar nuevos datos?(S/N)");
+		salida=lec.next().charAt(0);
+	}while(salida=='s' || salida=='S');
+		lec.close();
 
 	}
 }
