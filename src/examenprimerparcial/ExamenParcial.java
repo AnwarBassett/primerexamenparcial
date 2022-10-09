@@ -1,5 +1,6 @@
 package examenprimerparcial;
 import java.util.*;
+import java.util.Scanner;
 public class ExamenParcial {
 	public static void main(String[] args) {
 		Scanner lec=new Scanner(System.in);
