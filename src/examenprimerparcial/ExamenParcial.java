@@ -46,41 +46,62 @@ public class ExamenParcial {
 			 }
 			break;
 		case 2:
-			do{System.out.println("Por favor, Digite el valor del activo");
-			CA=lec.nextInt();}while(CA<1000 || CA>1000000);
-			do{System.out.println("Digite el valor de desecho/residual");
-			VD=lec.nextInt();}while(VD<1000 || VD>1000000);
-			do{System.out.println("Digite la vida util del activo");
-			VU=lec.nextInt();}while(VU<1 || VU>20);
-			
-			VUUF=0;
-			
-			for(int j=1;j<=VU;j++) {
-				System.out.print("Digite la vida util del activo en unidades");
-				VUU=lec.nextInt();
-				VUUF=VUU+VUUF;
-				System.out.println(j+" Año= "+VUU+" Km");
-			}
-
-			System.out.println(VUUF+" km");
-			
-			
-			DA=((CA-VD)/VU);
-			VL=CA-DA;
-			DPA=0;
-			System.out.println("Costo del activo: C$"+CA
-					+ "\nValor de Desecho/Residual: C$"+VD+""
-					+ "\nVida Util: C$"+VU+""
-					+ "\nDepresiacion Anual: C$"+DA);
-			
-			 for(int i=1;i<=VU;i++) {
-				DPA=DPA+DA;
-				System.out.println(i+". Depreciacion Acumulada="+DPA+" | Valor en libros="+VL);
-				VL=VL-DA;
-			 }
-
+			  int []datos = new int[VU];
+			  int suma=0;
+			  double nw;
+				System.out.println("Ingrese los valores de cada año de vida util");
+				  for (int i = 0; i<VU; i++) {
+					  System.out.print((i+1)+" Año: ");
+				      while(!lec.hasNextInt()){lec.next();System.out.println("Solo numeros puede ingresar");}
+					  datos[i] = lec.nextInt();
+				  }
+				  for (int i = 0; i < VU; i++) {
+					  suma+= datos[i];
+				  }
+				  DA=(CA-VD)/suma;
+				  System.out.println("+=================================================+");
+					System.out.println("|Costo del activo:                      C$"+CA+"|"
+							+ "\n|Valor de Desecho/Residual:             C$"+VD+"  |"
+							+ "\n|Vida Util:                             "+VU+" Años    |"
+							+ "\n|Vida util en unidades:                 C$"+suma+"  |"
+							+ "\n|Depreciacion por unidad de produccion: C$"+DA+" |");
+					System.out.println("+=================================================+");
+					  VL=CA;
+					  DPA=0;
+					      System.out.println("Depreciacion Anual | Depreciacion Acumulada | Valor en libros ");
+					      System.out.println("--------------------------------------------------------------");
+					  for(int i=0;i<VU;i++) {
+						  nw=datos[i]*DA;
+						  VL=(VL-nw);
+						  DPA=DPA+nw;
+						  System.out.println("C$"+nw+"          | "+"C$"+DPA+"              | "+"C$"+VL);
+					  }
 			break;
 		case 3:
+			  double []datoss = new double[7];
+			  int sumas=0;
+			double VUA, DTD, TD;
+			VUA=1.0/VU;
+			DTD=VUA*2;
+			TD=1-(Math.pow((VD/CA), VUA));
+			System.out.println(TD);
+			DA=((CA-VD)/VU);
+			VL=CA;
+			DPA=0;
+			System.out.println("Costo del activo: C$"+CA
+					+ "\nValor de Desecho/Residual: C$"+VD
+					+ "\nVida Util: C$"+VU
+					+ "\nTasa del doble saldo: "+DTD+"%");
+		    System.out.println("Valor Libros  |Deprecion Anual   |Depresion Acumulada");
+		    System.out.println("-----------------------------------------------------");
+		    for(int i=0;i<=VU;i++) {
+			     VL=VL-DPA;
+			     DPA=VL*DTD;
+			     datoss[i]=DPA;
+			     sumas+= datoss[i];
+			     System.out.println(Math.round(VL)+"        | "+Math.round(DPA)+"            | "+Math.round(sumas));
+		    }
+			
 			break;
 		case 4:
 			int NVU;
