@@ -23,20 +23,26 @@ public class ExamenParcial {
 		CA=lec.nextInt();}while(CA<1000 || CA>10000000);
 		do{System.out.print("Digite el valor de desecho/residual: ");
         while(!lec.hasNextInt()){lec.next();System.out.println("Solo numeros puede ingresar");}
-		VD=lec.nextInt();}while(VD<1000 || VD>10000000);
+		VD=lec.nextInt();}while(VD<0 || VD>10000000);
 		do{System.out.print("Digite la vida util del activo: ");
         while(!lec.hasNextInt()){lec.next();System.out.println("Solo numeros puede ingresar");}
-		VU=lec.nextInt();}while(VU<1 || VU>15);
+		VU=lec.nextInt();}while(VU<1 || VU>20);
+		
 		switch(menu) {
 		
 		case 1:
-			DA=((CA-VD)/VU);
+			if(VD==0) {
+				DA=(CA/VU);
+			}else {
+				DA=((CA-VD)/VU);
+			}
 			VL=CA-DA;
 			DPA=0;
 			System.out.println("Costo del activo: C$"+CA
 					+ "\nValor de Desecho/Residual: C$"+VD+""
 					+ "\nVida Util: C$"+VU
-					+ "\n ");
+					+ "\nCuota de Amortizacion: C$"+DA
+					+ "\n");
 			    System.out.println("Depreciacion Anual | Depreciacion Acumulada | Valor Libros");
 			    System.out.println("----------------------------------------------------------");
 			 for(int i=1;i<=VU;i++) {
@@ -58,7 +64,12 @@ public class ExamenParcial {
 				  for (int i = 0; i < VU; i++) {
 					  suma+= datos[i];
 				  }
-				  DA=(CA-VD)/suma;
+					if(VD==0) {
+						DA=(CA/suma);
+					}else {
+						DA=(CA-VD)/suma;
+					}
+				  
 				  System.out.println("+=================================================+");
 					System.out.println("|Costo del activo:                      C$"+CA+"|"
 							+ "\n|Valor de Desecho/Residual:             C$"+VD+"  |"
