@@ -37,10 +37,12 @@ public class ExamenParcial {
 				DA=((CA-VD)/VU);
 			}
 			VL=CA-DA;DPA=0;
-			System.out.println("Costo del activo: C$"+CA
+			System.out.println("+===============================+"
+					+ "\nCosto del activo: C$"+CA
 					+ "\nValor de Desecho/Residual: C$"+VD+""
 					+ "\nVida Util: C$"+VU
 					+ "\nCuota de Amortizacion: C$"+DA
+					+ "\n+===============================+"
 					+ "\n");
 			    System.out.println("Depreciacion Anual | Depreciacion Acumulada | Valor Libros");
 			    System.out.println("----------------------------------------------------------");
@@ -69,12 +71,12 @@ public class ExamenParcial {
 						DA=(CA-VD)/suma;
 					}
 				  System.out.println("+=================================================+");
-					System.out.println("|Costo del activo:                      C$"+CA+"|"
-							+ "\n|Valor de Desecho/Residual:             C$"+VD+"  |"
-							+ "\n|Vida Util:                             "+VU+" Años    |"
-							+ "\n|Vida util en unidades:                 C$"+suma+"  |"
-							+ "\n|Depreciacion por unidad de produccion: C$"+DA+" |");
-					System.out.println("+=================================================+");
+					System.out.println("Costo del activo:                      C$"+CA+""
+							+ "\nValor de Desecho/Residual:             C$"+VD+"  "
+							+ "\nVida Util:                             "+VU+" Años    "
+							+ "\nVida util en unidades:                 C$"+suma+"  "
+							+ "\nDepreciacion por unidad de produccion: C$"+DA+" ");
+					System.out.println("+=================================================+"+"\n");
 					  VL=CA;DPA=0;
 					      System.out.println("Depreciacion Anual | Depreciacion Acumulada | Valor en libros ");
 					      System.out.println("--------------------------------------------------------------");
@@ -91,24 +93,21 @@ public class ExamenParcial {
 			double VUA, DTD;
 			VUA=1.0/VU;
 			DTD=VUA*2;
-			if(VD==0) {
-				DA=(CA/VU);
-			}else {
-				DA=(CA-VD)/VU;
-			}
 			VL=CA;DPA=0;
-			System.out.println("Costo del activo: C$"+CA
+			System.out.println("+=====================================+"
+					+ "\nCosto del activo: C$"+CA
 					+ "\nValor de Desecho/Residual: C$"+VD
 					+ "\nVida Util: C$"+VU
-					+ "\nTasa del doble saldo: "+DTD+"%");
-		    System.out.println("Valor Libros  |Deprecion Anual   |Depresion Acumulada");
+					+ "\nTasa del doble saldo: "+DTD+"%"
+					+ "\n+=====================================+");
+		    System.out.println("Deprecion Anual   |Depresion Acumulada  |Valor Libros");
 		    System.out.println("-----------------------------------------------------");
 		    for(int i=0;i<=VU;i++) {
 			     VL=VL-DPA;
 			     DPA=VL*DTD;
 			     datoss[i]=DPA;
 			     sumas+= datoss[i];
-			     System.out.println(Math.round(VL)+"        | "+Math.round(DPA)+"            | "+Math.round(sumas));
+			     System.out.println(Math.round(DPA)+"             | "+Math.round(sumas)+"               | "+Math.round(VL));
 		    }
 			
 			break;
@@ -124,9 +123,11 @@ public class ExamenParcial {
 		IM=CA-VD;
 	}
 		fraccion=(Math.round((VU/sumatoria) * 10000d) / 10000d);
-		System.out.println("Costo del activo: C$"+CA
+		System.out.println("+=====================================+"
+				    + "Costo del activo: C$"+CA
 					+ "\nValor de Desecho/Residual: C$"+VD+""
-					+ "\nVida Util: C$"+VU);
+					+ "\nVida Util: C$"+VU
+					+"\n+=====================================+");
 		NVU=VU;VL=CA;DPA=0;
 		System.out.println("Fraccion | Importe depreciable | Depr. Anual | Depr. Acumulada | Valor Libros");
 	for(int j=1;j<=VU;j++) {
@@ -140,10 +141,11 @@ public class ExamenParcial {
 			break;
 		}
 		System.out.println("\n"
-				+ "Desea usar otro metodo y/o ingresar nuevos datos?(S/N)");
+		+"Desea usar otro metodo y/o ingresar nuevos datos?(S/N)");
 		salida=lec.next().charAt(0);
 	}while(salida=='s' || salida=='S');
 		lec.close();
+
 
 	}
 }
